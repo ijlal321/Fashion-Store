@@ -5,6 +5,7 @@ import { useProductStore } from "../stores/useProductStore";
 import { useUserStore } from "../stores/useUserStore";
 import FeaturedProducts from "../components/FeaturedProducts";
 import SpecializedProducts from "../components/SpecializedProducts"
+import SaleCard from "../components/SaleCard"
 
 const categories = [
 	{ href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
@@ -43,6 +44,7 @@ const HomePage = () => {
 				{!isLoading && products.length > 0 && <FeaturedProducts featuredProducts={products} />}
 
 				{user && !isLoading && products.length > 0 && <SpecializedProducts />}
+				{!isLoading && products.length > 0 && <SaleCard />}
 				<Footer />
 			</div>
 		</div>
