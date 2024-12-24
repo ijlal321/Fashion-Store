@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { ShoppingCart, ChevronLeft, ChevronRight, LucideAsteriskSquare } from "lucide-react";
 import { useCartStore } from "../stores/useCartStore";
 import { useProductStore } from "../stores/useProductStore";
-
+import { useUserStore } from "../stores/useUserStore";
+import { useNavigate } from 'react-router-dom';
 
 const getRandomItems = (list, nr_items) => {
     // If nr_items is greater than the number of items in the list, adjust it
@@ -36,6 +37,9 @@ const SpecializedProducts = () => {
 
     const { addToCart } = useCartStore();
     const { getAllProducts } = useProductStore();
+
+    const { user } = useUserStore();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => {
@@ -92,9 +96,9 @@ const SpecializedProducts = () => {
     return (
         <div className='py-12'>
             <div className='container mx-auto px-4'>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom:"20px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
                     <h2 className='text-center text-5xl sm:text-6xl font-bold text-emerald-400 mb-4'>Super Sale</h2>
-                    <div className="bg-grey rounded-lg shadow-lg max-w-sm w-full text-center" style={{border:"solid green 2px"}}>
+                    <div className="bg-grey rounded-lg shadow-lg max-w-sm w-full text-center" style={{ border: "solid green 2px" }}>
                         <h2 className="text-emerald-100 font-semibold mb-4 mt-2">Hurry Up! Sale Ending Soon</h2>
                         <div className="text-4xl font-bold text-red-600 mb-2">
                             {formatTime(timeLeft)}
@@ -124,7 +128,15 @@ const SpecializedProducts = () => {
                                                 ${product.price.toFixed(2)}
                                             </p>
                                             <button
-                                                onClick={() => addToCart(product)}
+                                                onClick={() => {
+                                                    if (user) {
+                                                        addToCart(product)
+                                                    }
+                                                    else {
+                                                        navigate('/login');
+                                                    }
+                                                }
+                                                }
                                                 className='w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 
 												flex items-center justify-center'
                                             >

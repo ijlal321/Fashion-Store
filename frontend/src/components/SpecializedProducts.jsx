@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { ShoppingCart, ChevronLeft, ChevronRight, LucideAsteriskSquare } from "lucide-react";
 import { useCartStore } from "../stores/useCartStore";
 import { useProductStore } from "../stores/useProductStore";
+import { useUserStore } from "../stores/useUserStore";
+import { useNavigate } from 'react-router-dom';
 
 const getCategoryWithHeighestClick = (data) => {
 	let maxKey = '';
@@ -40,6 +42,9 @@ const FeaturedProducts = () => {
 
 	const { addToCart } = useCartStore();
 	const { getAllProducts} = useProductStore();
+
+	const { user } = useUserStore();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -131,8 +136,15 @@ const FeaturedProducts = () => {
 												${product.price.toFixed(2)}
 											</p>
 											<button
-												onClick={() => addToCart(product)}
-												className='w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 
+												onClick={() => {
+													if (user) {
+														addToCart(product)
+													}
+													else {
+														navigate('/login');
+													}
+												}
+												}												className='w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 
 												flex items-center justify-center'
 											>
 												<ShoppingCart className='w-5 h-5 mr-2' />
