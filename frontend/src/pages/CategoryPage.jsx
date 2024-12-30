@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import ProductCard from "../components/ProductCard";
 
 const CategoryPage = () => {
-	const { fetchProductsByCategory, products } = useProductStore();
+	const { fetchProductsByCategory, products, loading } = useProductStore();
 
 	const { category } = useParams();
 
@@ -55,7 +55,7 @@ const CategoryPage = () => {
 						</h2>
 					)}
 
-					{products?.map((product) => (
+					{!loading && products?.map((product) => (
 						<ProductCard key={product._id} product={product} />
 					))}
 				</motion.div>
