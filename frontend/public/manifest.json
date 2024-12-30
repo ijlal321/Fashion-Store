@@ -3,8 +3,8 @@
     "name": "My Fashion Store",
     "icons": [
         {
-            "src": "icon-192x192.png",
-            "type": "image/png",
+            "src": "https://img.freepik.com/premium-vector/green-logo-clothes-store_278222-5237.jpg",
+            "type": "image/jpg",
             "sizes": "192x192"
         },
         {
