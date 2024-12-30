@@ -25,6 +25,27 @@ const HomePage = () => {
 		fetchFeaturedProducts();
 	}, [fetchFeaturedProducts]);
 
+	useEffect(() => {
+        const showNotification = async () => {
+            // Check if the notification has already been shown in this session
+            const hasShownNotification = sessionStorage.getItem("hasShownNotification");
+
+            if (!hasShownNotification && "Notification" in window) {
+                const permission = await Notification.requestPermission();
+                if (permission === "granted") {
+                    new Notification("Welcome to Fashion Store!", {
+                        body: "Thank you for visiting. Enjoy your shopping!",
+                        icon: "https://example.com/store-icon.png", // Replace with your store's logo
+                    });
+                    // Mark notification as shown for this session
+                    sessionStorage.setItem("hasShownNotification", "true");
+                }
+            }
+        };
+
+        showNotification();
+    }, []);
+
 	return (
 		<div className='relative min-h-screen text-white overflow-hidden'>
 			<div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16'>
