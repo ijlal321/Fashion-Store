@@ -35,7 +35,7 @@ const HomePage = () => {
                 if (permission === "granted") {
                     new Notification("Welcome to Fashion Store!", {
                         body: "Thank you for visiting. Enjoy your shopping!",
-                        icon: "https://example.com/store-icon.png", // Replace with your store's logo
+                        icon: "https://img.freepik.com/premium-vector/green-logo-clothes-store_278222-5237.jpg", // Replace with your store's logo
                     });
                     // Mark notification as shown for this session
                     sessionStorage.setItem("hasShownNotification", "true");

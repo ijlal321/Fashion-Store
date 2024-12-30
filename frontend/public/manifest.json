@@ -1,0 +1,21 @@
+{
+    "short_name": "Fashion Store",
+    "name": "My Fashion Store",
+    "icons": [
+        {
+            "src": "icon-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "https://img.freepik.com/premium-vector/green-logo-clothes-store_278222-5237.jpg",
+            "type": "image/jpg",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#317EFB"
+}
